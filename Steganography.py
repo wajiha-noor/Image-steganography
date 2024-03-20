@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
-
-
 from PIL import Image
 import cv2
 import numpy as np
@@ -12,7 +6,9 @@ from bitstring import BitArray
 def hide_and_extract(secret_path, cover_path):
     secret_image = cv2.imread(secret_path)
     cover_image = cv2.imread(cover_path)
-
+    if secret_image.size != cover_image.size:
+        print("Both images must have same resolution")
+        return
     combined_image = cover_image.copy()
     for x in range(cover_image.shape[1]):
         for y in range(cover_image.shape[0]):
@@ -59,8 +55,9 @@ def hide_and_extract(secret_path, cover_path):
         else:
             print("Invalid choice. Please enter 1, 2, 3, 4, or 'q'.")
 
-secret_image_path = "myimage1.jpg"
-cover_image_path = "myimage2.jpg"
+#Images Must be of Same Size
+secret_image_path = "(ADD PATH OF IMAGE TO HIDE)"
+cover_image_path = "(ADD PATH OF DISPLAY IMAGE)"
 
 hide_and_extract(secret_image_path, cover_image_path)
 
